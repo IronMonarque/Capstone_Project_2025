@@ -34,9 +34,13 @@ public class BossHealth : MonoBehaviour, IDamageable
         animator.SetBool("isDead", true);
 
         Debug.Log("Boss died");
-        
+
+        // ... your VFX/SFX/points here ...
+        var gm = FindObjectOfType<GameManager>();
+        if (gm) gm.NotifyEnemyKilled();   // <-- this line is the key
+
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
-        
+
         Destroy(gameObject);
     }
 

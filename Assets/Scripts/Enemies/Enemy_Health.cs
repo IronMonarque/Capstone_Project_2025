@@ -33,5 +33,11 @@ public class Enemy_Health : MonoBehaviour, IDamageable
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+        
+        // ... your VFX/SFX/points here ...
+        var gm = FindObjectOfType<GameManager>();
+        if (gm) gm.NotifyEnemyKilled();   // <-- this line is the key
+
+        Destroy(gameObject);
     }
 }

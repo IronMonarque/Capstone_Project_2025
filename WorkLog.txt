@@ -1,0 +1,70 @@
+09/02/25
+- restart project from scratch
+-imported previous assets again
+- started scripts and movement animations for the player and enemy
+
+09/04/25
+-creating menu scene
+-started working on final boss scene and script
+
+09/06/25
+-exploring ways to implement high score leaderboards
+
+09/07/25
+-working on other enemy scripts and animations
+
+09/09/25
+-working on player health bar
+- looking for sound fx
+
+
+
+
+using UnityEngine;
+
+public class PlayerCombat : MonoBehaviour
+{
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public int attackDamage = 20;
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
+
+    public Animator animator;
+    public LayerMask enemyLayers;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time >= nextAttackTime)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
+        
+    }
+
+    void Attack()
+    {
+        animator.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy_Skeleton>().TakeDamage(attackDamage);
+            enemy.GetComponent<BossHealth>().TakeDamage(attackDamage);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+}

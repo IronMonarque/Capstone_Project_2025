@@ -1,8 +1,6 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Enemy_Controller : MonoBehaviour
 {
     public Transform rayCast;
     public LayerMask raycastMask;
@@ -44,7 +42,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             inRange = false;
         }
 
-        if(inRange == false)
+        if (inRange == false)
         {
             animator.SetBool("InMovement", false);
             StopAttack();
@@ -60,13 +58,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
             Move();
             StopAttack();
         }
-        else if (distance < attackDistance && cooling == false)
+        else if (attackDistance >= distance && cooling == false)
         {
             Attack();
         }
 
         if (cooling)
         {
+            Cooldown();
             animator.SetBool("Attack", false);
         }
     }
@@ -75,7 +74,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         animator.SetBool("InMovement", true);
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack"))
         {
             Vector2 targetPosition = new Vector2(target.transform.position.x, target.transform.position.y);
 
@@ -92,6 +91,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
         animator.SetBool("Attack", true);
     }
 
+    void Cooldown()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0 && cooling && attackMode)
+        {
+            cooling = false;
+            timer = intTimer;
+        }
+    }
+
     void StopAttack()
     {
         cooling = false;
@@ -101,7 +111,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void RaycastDebugger()
     {
-        if(distance > attackDistance)
+        if (distance > attackDistance)
         {
             Debug.DrawRay(rayCast.position, Vector2.left * rayCastLenght, Color.red);
         }
@@ -117,5 +127,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
             target = trig.gameObject;
             inRange = true;
         }
+    }
+
+    public void TriggerCooling()
+    {
+        cooling = true;
     }
 }

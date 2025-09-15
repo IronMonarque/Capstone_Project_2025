@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4868236962505014103}
   - component: {fileID: 4673424172532531483}
   - component: {fileID: 1165355923166883672}
-  - component: {fileID: 5367365884175448906}
   - component: {fileID: 3978775311241556660}
+  - component: {fileID: 5500160033663448270}
   m_Layer: 6
   m_Name: Enemy_Goblin
   m_TagString: Enemy
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260682435139527448}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -249,26 +249,6 @@ MonoBehaviour:
   attackDamage: 15
   attackRange: 1
   isFlipped: 0
---- !u!114 &5367365884175448906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260682435139527448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c780fc81c4ee84b85b88e555ca127b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayCast: {fileID: 5020503618684351306}
-  raycastMask:
-    serializedVersion: 2
-    m_Bits: 8
-  rayCastLenght: 6
-  attackDistance: 2
-  moveSpeed: 2
-  timer: 0
 --- !u!114 &3978775311241556660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +263,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4673424172532531483}
   maxHealth: 25
+--- !u!114 &5500160033663448270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260682435139527448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94a337d1a87dc54998644d45e2bea6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCast: {fileID: 5020503618684351306}
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 8
+  rayCastLenght: 6
+  attackDistance: 3
+  moveSpeed: 5
+  timer: 3
 --- !u!1 &4095156215647379963
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,8 +464,8 @@ Transform:
   m_GameObject: {fileID: 9137361922283786323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.514, y: -0.017, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.171, y: -0.159, z: 0}
+  m_LocalScale: {x: 1.053, y: 1.053, z: 1.053}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3682033358547978006}

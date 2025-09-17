@@ -3,6 +3,9 @@ using UnityEngine;
 public class Enemy_Health : MonoBehaviour, IDamageable
 {
     public Animator animator;
+    [SerializeField] private AudioSource isHurtSoundClip;
+    [SerializeField] private AudioSource isDeadSoundClip;
+
 
     public int maxHealth = 50;
     int currentHealth;
@@ -18,8 +21,9 @@ public class Enemy_Health : MonoBehaviour, IDamageable
         currentHealth -= damage;
 
         animator.SetTrigger("isHurt");
+        isHurtSoundClip.Play();
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -28,7 +32,9 @@ public class Enemy_Health : MonoBehaviour, IDamageable
     void Die()
     {
         animator.SetBool("isDead", true);
-        
+        isDeadSoundClip.Play();
+
+
         Debug.Log("Enemy died");
 
         GetComponent<Collider2D>().enabled = false;

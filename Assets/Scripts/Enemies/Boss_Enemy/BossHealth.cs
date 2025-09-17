@@ -10,7 +10,8 @@ public class BossHealth : MonoBehaviour, IDamageable
 
     public Animator animator;
     public GameObject deathEffect;
-
+    [SerializeField] private AudioSource isHurtSoundClip;
+    [SerializeField] private AudioSource isDeadSoundClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,7 @@ public class BossHealth : MonoBehaviour, IDamageable
         currentHealth -= damage;
 
         animator.SetTrigger("isHurt");
+        isHurtSoundClip.Play();
 
         if (currentHealth <= 0)
         {
@@ -32,6 +34,7 @@ public class BossHealth : MonoBehaviour, IDamageable
     void Die()
     {
         animator.SetBool("isDead", true);
+        isDeadSoundClip.Play();
 
         Debug.Log("Boss died");
 

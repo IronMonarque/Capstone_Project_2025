@@ -8,6 +8,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float attackRate = 2f;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private AudioSource attackSoundClip;
+
 
     float nextAttackTime;
 
@@ -37,6 +39,7 @@ public class PlayerCombat : MonoBehaviour
         
 
         animator.SetTrigger("Attack");
+        attackSoundClip.Play();
 
         var hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (var col in hits)

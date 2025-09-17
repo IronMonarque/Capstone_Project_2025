@@ -19,6 +19,8 @@ public class Skeleton_Warrior_Attack : MonoBehaviour
     float _nextAttackTime;
     Rigidbody2D _rb;
     SpriteRenderer _sr;
+    [SerializeField] private AudioSource attackSoundClip;
+
 
     void Awake()
     {
@@ -63,6 +65,7 @@ public class Skeleton_Warrior_Attack : MonoBehaviour
             _nextAttackTime = Time.time + attackCooldown;
             if (animator) animator.SetTrigger("Attack1"); // optional animation
             Invoke(nameof(DoAttack), windup);            // small delay to match the swing
+            attackSoundClip.Play();
         }
     }
 

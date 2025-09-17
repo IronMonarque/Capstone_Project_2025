@@ -18,6 +18,9 @@ public class Enemy_Controller : MonoBehaviour
     private bool cooling;
     private float intTimer;
 
+    [SerializeField] private AudioSource atttackSoundClip;
+
+
     private void Awake()
     {
         intTimer = timer;
@@ -89,6 +92,7 @@ public class Enemy_Controller : MonoBehaviour
 
         animator.SetBool("InMovement", false);
         animator.SetBool("Attack", true);
+        atttackSoundClip.Play();
     }
 
     void Cooldown()

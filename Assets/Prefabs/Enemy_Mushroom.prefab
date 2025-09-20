@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 8510682871959600849}
   - component: {fileID: 2456858175355927480}
   - component: {fileID: 4843434675430762797}
+  - component: {fileID: 1247122132745543732}
   - component: {fileID: 6327079261488950769}
   - component: {fileID: -1154193003149644527}
   - component: {fileID: -4042729760983408439}
@@ -421,15 +422,33 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7509007358287373768}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801ddaed0a7caa54a90ff749e0ad9a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 80
   animator: {fileID: 8510682871959600849}
   isHurtSoundClip: {fileID: -1154193003149644527}
   isDeadSoundClip: {fileID: -1154193003149644527}
+--- !u!114 &1247122132745543732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509007358287373768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3249558915e27ce4fb6b243b89402f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8510682871959600849}
+  isHurtSoundClip: {fileID: -1154193003149644527}
+  isDeadSoundClip: {fileID: -4042729760983408439}
   maxHealth: 80
+  hurtParam: isHurt
+  deadParam: isDead
 --- !u!114 &6327079261488950769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,10 +466,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   rayCastLenght: 6
-  attackDistance: 3
+  attackDistance: 1.5
   moveSpeed: 2.6
   timer: 3
   atttackSoundClip: {fileID: -5721477709991762572}
+  damager: {fileID: 0}
 --- !u!82 &-1154193003149644527
 AudioSource:
   m_ObjectHideFlags: 0

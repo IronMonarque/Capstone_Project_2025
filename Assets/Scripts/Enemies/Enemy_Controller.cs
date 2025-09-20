@@ -19,12 +19,14 @@ public class Enemy_Controller : MonoBehaviour
     private float intTimer;
 
     [SerializeField] private AudioSource atttackSoundClip;
-
+    [SerializeField] private Goblin_Attack damager;
 
     private void Awake()
     {
         intTimer = timer;
+        if (!damager) damager = GetComponent<Goblin_Attack>();
         animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -91,8 +93,24 @@ public class Enemy_Controller : MonoBehaviour
         attackMode = true;
 
         animator.SetBool("InMovement", false);
-        animator.SetBool("Attack", true);
+        //animator.SetBool("Attack", true);
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("Attack");
+
+        var damager = GetComponent<Goblin_Attack>();
+        if (damager != null)
+        {
+            // small delay so the hit lines up with the animation
+            Invoke(nameof(DoHit), 0.12f);
+        }
+        Invoke(nameof(DoHit), 0.12f); // small windup
         atttackSoundClip.Play();
+    }
+
+    void DoHit()
+    {
+        var damager = GetComponent<Goblin_Attack>();
+        if (damager != null) damager.Attack();
     }
 
     void Cooldown()

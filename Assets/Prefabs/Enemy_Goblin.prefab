@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5813031947796126460}
   - component: {fileID: 4868236962505014103}
   - component: {fileID: 4673424172532531483}
+  - component: {fileID: 4725701015381370294}
   - component: {fileID: 1165355923166883672}
-  - component: {fileID: 3978775311241556660}
   - component: {fileID: 5500160033663448270}
   - component: {fileID: 1535513179988261104}
   - component: {fileID: -9142529568199958028}
@@ -232,6 +232,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4725701015381370294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260682435139527448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676cec81f96e91e4195f0e0f2f7a426f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4673424172532531483}
+  isHurtSoundClip: {fileID: 1535513179988261104}
+  isDeadSoundClip: {fileID: -9142529568199958028}
+  maxHealth: 30
+  deathDespawnDelay: 1.2
+  hurtParam: isHurt
+  deadParam: isDead
 --- !u!114 &1165355923166883672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,30 +263,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc9749a95a44934f83f9ec8d0a60c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackOffset: {x: 0, y: 0, z: 0}
-  attackMask:
+  attackPoint: {fileID: 6562517260785199310}
+  attackBox: {x: -1.14, y: 0.89}
+  playerMask:
     serializedVersion: 2
     m_Bits: 8
-  player: {fileID: 3823409062612489859, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
-  attackDamage: 15
-  attackRange: 1
-  isFlipped: 0
---- !u!114 &3978775311241556660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260682435139527448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801ddaed0a7caa54a90ff749e0ad9a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4673424172532531483}
-  isHurtSoundClip: {fileID: 1535513179988261104}
-  isDeadSoundClip: {fileID: -9142529568199958028}
-  maxHealth: 25
+  damage: 15
 --- !u!114 &5500160033663448270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,11 +285,12 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 8
-  rayCastLenght: 6
-  attackDistance: 3
-  moveSpeed: 5
+  rayCastLenght: 5
+  attackDistance: 1
+  moveSpeed: 4.5
   timer: 3
   atttackSoundClip: {fileID: 1789900844959707620}
+  damager: {fileID: 0}
 --- !u!82 &1535513179988261104
 AudioSource:
   m_ObjectHideFlags: 0
@@ -724,7 +726,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.04974465, y: 0.07185338}
+  m_Offset: {x: 0.030222207, y: 0.09555909}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -734,7 +736,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.14881438, y: 0.13775991}
+  m_Size: {x: 0.35519361, y: 0.2465274}
   m_EdgeRadius: 0
 --- !u!1 &9137361922283786323
 GameObject:
@@ -761,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 9137361922283786323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.171, y: -0.159, z: 0}
+  m_LocalPosition: {x: -0.243, y: -0.07, z: 0}
   m_LocalScale: {x: 1.053, y: 1.053, z: 1.053}
   m_ConstrainProportionsScale: 0
   m_Children: []

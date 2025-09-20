@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour, IDamageable
 {
-    public Animator animator;
+    [SerializeField] public int maxHealth = 50;
+    [SerializeField] private Animator animator;
     [SerializeField] private AudioSource isHurtSoundClip;
     [SerializeField] private AudioSource isDeadSoundClip;
 
-
-    public int maxHealth = 50;
     int currentHealth;
+    bool reported; // prevents double count
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
@@ -18,32 +17,50 @@ public class Enemy_Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (currentHealth <= 0) return;
+
         currentHealth -= damage;
 
-        animator.SetTrigger("isHurt");
-        isHurtSoundClip.Play();
+        if (animator) animator.SetTrigger("isHurt");
+        isHurtSoundClip?.Play();
 
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     void Die()
     {
-        animator.SetBool("isDead", true);
-        isDeadSoundClip.Play();
+        // --- Notify FIRST so nothing can stop it ---
+        NotifyOnce();
 
+        // Visuals / audio (null-safe)
+        if (animator) animator.SetBool("isDead", true);
+        isDeadSoundClip?.Play();
 
-        Debug.Log("Enemy died");
-
-        GetComponent<Collider2D>().enabled = false;
+        // Disable collision/logic, then destroy
+        var col = GetComponent<Collider2D>();
+        if (col) col.enabled = false;
         this.enabled = false;
-        
-        // ... your VFX/SFX/points here ...
-        var gm = FindObjectOfType<GameManager>();
-        if (gm) gm.NotifyEnemyKilled();   // <-- this line is the key
 
-        Destroy(gameObject);
+        // Small delay if you want death anim/SFX to start before removing
+        Destroy(gameObject, 0.05f);
+    }
+
+    void OnDestroy()
+    {
+        // Safety: if something else destroys this enemy, still notify
+        if (Application.isPlaying) NotifyOnce();
+    }
+
+    void NotifyOnce()
+    {
+        if (reported) return;
+#if UNITY_2022_2_OR_NEWER
+        var gm = FindFirstObjectByType<GameManager>();
+#else
+        var gm = FindObjectOfType<GameManager>();
+#endif
+        if (gm) gm.NotifyEnemyKilled();
+        reported = true;
     }
 }

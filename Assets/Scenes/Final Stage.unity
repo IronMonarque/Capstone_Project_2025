@@ -128,6 +128,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3684726905780236327, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
+      propertyPath: attackRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684726905780236327, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
       propertyPath: attackSoundClip
       value: 
       objectReference: {fileID: 7346489}
@@ -171,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5919401057655326303, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1185134793}
     - target: {fileID: 7395411167784312805, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
       propertyPath: m_Name
       value: Player 1
@@ -183,6 +191,11 @@ PrefabInstance:
 --- !u!82 &7346489 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: -343624635529646682, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
+  m_PrefabInstance: {fileID: 7346488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7346490 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3823409062612489859, guid: 77099eadbe2d609418579fbb5ecf9036, type: 3}
   m_PrefabInstance: {fileID: 7346488}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &123248464
@@ -2519,7 +2532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 12.637, y: -0.0001373291}
+  m_AnchoredPosition: {x: 12.637024, y: -0.00012207031}
   m_SizeDelta: {x: 24.274, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1039643322
@@ -2728,9 +2741,9 @@ RectTransform:
   - {fileID: 1039643321}
   m_Father: {fileID: 449957140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -261.5, y: 173.7}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 137.5, y: -22.5}
   m_SizeDelta: {x: 275, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185134792
@@ -2859,7 +2872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartDelay: 2
   nextLevelDelay: 3
-  nextSceneName: 
+  nextSceneName: Credit Scene
 --- !u!4 &1224982579
 Transform:
   m_ObjectHideFlags: 0
@@ -3701,7 +3714,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20.3446, y: -0.29470062}
+  m_AnchoredPosition: {x: 20.344604, y: -0.29470825}
   m_SizeDelta: {x: 8.8586, y: -10.0208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1760694289
@@ -4333,7 +4346,7 @@ PrefabInstance:
     - target: {fileID: 9173833017989111731, guid: ac9bc611dae63434a91375dbc51a28a1, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7346490}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

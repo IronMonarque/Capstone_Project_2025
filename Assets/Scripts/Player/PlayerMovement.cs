@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
 
     [SerializeField] Animator animator;
+    [SerializeField] private AudioSource jumpSoundClip;
 
     Rigidbody2D rb;
     
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
             isGrounded = false;
             animator.SetBool("isJumping", !isGrounded);
+            jumpSoundClip.Play();
         }
     }
 
